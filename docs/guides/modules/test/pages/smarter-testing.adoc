@@ -106,7 +106,10 @@ feedback loop.
 - Install the latest CircleCI CLI
 - Install the latest testsuite CLI plugin
 
-Currently the testsuite CLI plugin is distributed solely through a Homebrew tap.
+TIP: The testsuite CLI plugin is already available for use in CI containers, there is no need to install it.
+
+==== Install the testsuite plugin with Homebrew
+The testsuite CLI plugin is distributed through a Homebrew tap.
 
 [source,console]
 ----
@@ -118,7 +121,84 @@ $ brew install circleci/tap/circleci-testsuite
 $ brew upgrade circleci circleci/tap/circleci-testsuite
 ----
 
-The testsuite CLI plugin is already available for use in CI containers, there is no need to install it.
+==== Install the testsuite plugin manually
+Prebuilt binaries are available from the CircleCI binary releases public bucket.
+
+[tabs]
+====
+Mac ARM::
+https://circleci-binary-releases.s3.amazonaws.com/circleci-cli-plugins/circleci-testsuite/1.0.15108-d839eb2/darwin/arm64/circleci-testsuite.gz[Download]
++
+Verify with:
++
+[source,console]
+----
+$ sha256sum -c <(echo "04f37e47a12b4677cda35b804357b10c5891ef42081f1674fe74d82f56baf3cb  ./circleci-testsuite.gz")
+----
+
+Mac Intel::
+https://circleci-binary-releases.s3.amazonaws.com/circleci-cli-plugins/circleci-testsuite/1.0.15108-d839eb2/darwin/amd64/circleci-testsuite.gz[Download]
++
+Verify with:
++
+[source,console]
+----
+$ sha256sum -c <(echo "8c933b3358d8659ea7cc228b2fbd83b4e605c472c0b60355b3b0f97d0952852b  ./circleci-testsuite.gz")
+----
+
+Linux AMD64::
+https://circleci-binary-releases.s3.amazonaws.com/circleci-cli-plugins/circleci-testsuite/1.0.15108-d839eb2/linux/amd64/circleci-testsuite.gz[Download]
++
+Verify with:
++
+[source,console]
+----
+$ sha256sum -c <(echo "f189936b32bae5cde22a7522dc58bd4e988c1384f690801c4cc88dfebf90319c  ./circleci-testsuite.gz")
+----
+
+Linux ARM::
+https://circleci-binary-releases.s3.amazonaws.com/circleci-cli-plugins/circleci-testsuite/1.0.15108-d839eb2/linux/arm/circleci-testsuite.gz[Download]
++
+Verify with:
++
+[source,console]
+----
+$ sha256sum -c <(echo "b84ccd76ddb4bad1e8226381e308f9a9d95e2314cd3676fcdaffcf234446fcd5  ./circleci-testsuite.gz")
+----
+
+Linux ARM64::
+https://circleci-binary-releases.s3.amazonaws.com/circleci-cli-plugins/circleci-testsuite/1.0.15108-d839eb2/linux/arm64/circleci-testsuite.gz[Download]
++
+Verify with:
++
+[source,console]
+----
+$ sha256sum -c <(echo "a5770f0c964b434df3560358836fa2401f526379e84aac2cd6c7946180ed1ce6  ./circleci-testsuite.gz")
+----
+
+Windows AMD64::
+https://circleci-binary-releases.s3.amazonaws.com/circleci-cli-plugins/circleci-testsuite/1.0.15108-d839eb2/windows/amd64/circleci-testsuite.exe.gz[Download]
++
+Verify with:
++
+[source,console]
+----
+$ sha256sum -c <(echo "ca0f395b1ffeca557428a30cc405ad193fe681792822cfae73c7c7c813687c0c  ./circleci-testsuite.exe.gz")
+----
+====
+
+After downloading the plugin and verifying the checksum:
+. Decompress the binary
+. Set the execute bit
+. Move it to a directory on your shell's `$PATH`
+
+[source,console]
+----
+$ gunzip circleci-testsuite.gz
+$ chmod u+x circleci-testsuite
+$ mv circleci-testsuite "${HOME}/bin/"
+----
+
 
 === 1.2 Configure the discover command
 TIP: The `circleci run testsuite` CLI tooling must be run from your repository root directory. The commands run as part of the test suite will also be run from your repository root directory, and should not use `cd` to change the working directory.
